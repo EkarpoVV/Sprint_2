@@ -7,8 +7,11 @@ class PointsForPlace:
         elif place < 1:
             print('Спортсмен не может занять нулевое или отрицательное место')
         else:
-            points =  101 - place
-            return points
+            points = 101 - place
+            if points: ## Мне почему-то кажется, что это должно выглядеть проще, как будто у меня много кода для этой защиты
+                return points
+            else:
+                return 0
         
         
 class PointsForMeters:
@@ -17,7 +20,10 @@ class PointsForMeters:
             print('Количество метров не может быть отрицательным')
         else:
             points = meters * 0.5
-            return points
+            if points: ## Мне почему-то кажется, что это должно выглядеть проще, как будто у меня много кода для этой защиты
+                return points
+            else:
+                return 0
            
 class TotalPoints(PointsForPlace,PointsForMeters):
     def get_total_points(self, place, meters):
