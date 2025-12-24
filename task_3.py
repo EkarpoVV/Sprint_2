@@ -2,28 +2,29 @@ points = 0
 
 class PointsForPlace:
     def get_points_for_place(self, place):
-        if place > 100:
+        if not isinstance(place, (int, float)):
+            return 0
+        elif place > 100:
             print('Баллы начисляются только первым 100 участникам')
+            return 0
         elif place < 1:
             print('Спортсмен не может занять нулевое или отрицательное место')
+            return 0
         else:
             points = 101 - place
-            if points: ## Мне почему-то кажется, что это должно выглядеть проще, как будто у меня много кода для этой защиты
-                return points
-            else:
-                return 0
-        
-        
+            return points
+       
 class PointsForMeters:
     def get_points_for_meters(self,meters):
-        if meters < 0:
+        if not isinstance(meters, (int, float)):
+            return 0
+        elif meters < 0:
             print('Количество метров не может быть отрицательным')
+            return 0
         else:
             points = meters * 0.5
-            if points: ## Мне почему-то кажется, что это должно выглядеть проще, как будто у меня много кода для этой защиты
-                return points
-            else:
-                return 0
+            return points
+
            
 class TotalPoints(PointsForPlace,PointsForMeters):
     def get_total_points(self, place, meters):
@@ -39,4 +40,4 @@ total_points = TotalPoints()
 print(total_points.get_points_for_place(10))
 print(total_points.get_points_for_meters(10))
 print(total_points.get_total_points(100, 10))           
-        
+   
